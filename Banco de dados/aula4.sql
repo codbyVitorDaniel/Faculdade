@@ -59,3 +59,13 @@ matriculas.data_matriculas AS "Data da Matricula do Aluno"
 FROM alunos 
 INNER JOIN matriculas ON alunos.id = matriculas.id_alunos
 INNER JOIN cursos ON cursos.id = matriculas.id_cursos;
+
+--Inner join com alias
+
+SELECT alunos.nome AS "Nome dos alunos",
+a.data_nascimento AS "DATA de Nascimento",
+c.nome AS "Curso Matriculado";
+m.data_matriculas AS "Data da Matricula do Aluno"
+FROM alunos a
+INNER JOIN matriculas m ON alunos.id = m.id_alunos
+INNER JOIN cursos  c ON c.id = m.id_cursos;
