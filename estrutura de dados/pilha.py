@@ -1,13 +1,15 @@
-from stack import Stack
+import stack
 
-MinhaPilha = Stack()
+# MinhaPilha = Stack()
 
-MinhaPilha.push("Universidade de Vassouras - Campus Vassouras")
-MinhaPilha.push("Universidade de Vassouras - Campus Marica")
-MinhaPilha.push("Universidade de Vassouras - Campus Saquarema")
+# MinhaPilha.push("Universidade de Vassouras - Campus Vassouras")
+# MinhaPilha.push("Universidade de Vassouras - Campus Marica")
+# MinhaPilha.push("Universidade de Vassouras - Campus Saquarema")
 
-print(MinhaPilha.items)
+# print(MinhaPilha.items)
 
-MinhaPilha.pop()
+# MinhaPilha.pop()
 
-print(MinhaPilha.items)
+# print(MinhaPilha.items)
+fila_atendimento = 
+fila_atendimento.enqueue("Marcio")
