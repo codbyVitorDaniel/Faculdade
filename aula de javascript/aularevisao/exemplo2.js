@@ -15,7 +15,7 @@ console.log(nota >= "7")
 // let situaçao = nota >= 5.5 ? "Aprovado" : "Reprovado"
 // console.log(situaçao)
 
-let fruta = "Manga"
+let frutas = "Manga"
 switch (nota) {
     case nota >= 6:
         console.log("Aprovado")
