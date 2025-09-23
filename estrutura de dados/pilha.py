@@ -11,5 +11,3 @@ import stack
 # MinhaPilha.pop()
 
 # print(MinhaPilha.items)
-fila_atendimento = 
-fila_atendimento.enqueue("Marcio")
