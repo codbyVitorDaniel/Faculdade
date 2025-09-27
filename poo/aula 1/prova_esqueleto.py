@@ -267,7 +267,7 @@ class Biblioteca:
     
     def __init__(self, nome):
         self.nome = nome
-        self.lista = {}
+        self.lista = []
         """
         Construtor da classe Biblioteca.
         TODO 14: Implemente o seguinte no construtor:
@@ -276,14 +276,16 @@ class Biblioteca:
         """
     
     def adicionar_livro(self, livro):
-        
+        self.lista.append(livro)
         """
         Adiciona um livro à biblioteca.
         TODO 15: Implemente a lógica para adicionar um livro à lista
         """
-        pass
     
     def listar_livros(self):
+        for livro in self.lista:
+            for i in livro:
+                print(f"Livros {livro} na {i}")
         """
         Lista todos os livros da biblioteca.
         TODO 16: Implemente a lógica para imprimir todos os livros
@@ -291,9 +293,10 @@ class Biblioteca:
         Printe o nome da biblioteca antes de imprimir os livros.
         Crie uma estrutura FOR para percorrer a lista de livros e printar todos no terminal.
         """
-        pass
     
     def buscar_livro_por_titulo(self, titulo):
+        buscar = input("Digite o nome do Livro\nR:")
+        for lista 
         """
         Busca um livro pelo título.
         TODO 17: Implemente a busca e retorne o primeiro livro encontrado
@@ -302,7 +305,7 @@ class Biblioteca:
         Se encontrado, retorne o livro.
         Se não encontrado, retorne None ou "Livro não encontrado".
         """
-        pass
+        
     
     def emprestar_livro(self, titulo):
         """
