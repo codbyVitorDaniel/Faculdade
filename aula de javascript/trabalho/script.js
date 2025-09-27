@@ -1,34 +1,48 @@
-const nome = document.getElementById("nomeAluno");
-const nota = document.getElementById("notaAluno");
-const btn = document.getElementById("btnAdicionar"); 
+const nomeInput = document.getElementById("nomeAluno");
+const notaInput = document.getElementById("notaAluno");
+const btnAdicionar = document.getElementById("btnAdicionar");
 const listaUL = document.getElementById("listaAlunos");
-let lista = [];
 
-btn.addEventListener("click", function () {
-    const nomeAluno = nome.value.trim();
-    const notaAluno = Number(nota.value);
+let alunos = [];
 
-    if (nomeAluno === "" || isNaN(notaAluno)) {
-        alert("Preencha o nome e a nota corretamente!");
+function calcularSituacao(nota) {
+    if (nota >= 7) {
+        return "Aprovado";
+    } else if (nota >= 4 && nota < 7) {
+        return "Recuperação";
+    } else {
+        return "Reprovado";
+    }
+}
+
+function atualizarLista() {
+    listaUL.innerHTML = "";
+    alunos.forEach(aluno => {
+        const li = document.createElement("li");
+        li.textContent = `${aluno.nome} - Nota: ${aluno.nota} - ${aluno.situacao}`;
+        listaUL.appendChild(li);
+    });
+}
+
+function adicionarAluno() {
+    const nome = nomeInput.value.trim();
+    const nota = Number(notaInput.value);
+
+    if (nome === "" || isNaN(nota)) {
+        alert("Preencha corretamente o nome e a nota do aluno.");
         return;
     }
 
-    let situacao = "";
-    if (notaAluno >= 7) {
-        situacao = "Aprovado";
-    } else if (notaAluno >= 4 && notaAluno < 7) {
-        situacao = "Recuperação";
-    } else {
-        situacao = "Reprovado";
-    }
+    const aluno = {
+        nome: nome,
+        nota: nota,
+        situacao: calcularSituacao(nota)
+    };
 
-    lista.push({ nome: nomeAluno, nota: notaAluno, situacao: situacao });
+    alunos.push(aluno);
+    atualizarLista();
+    nomeInput.value = "";
+    notaInput.value = "";
+}
 
-    const li = document.createElement("li");
-    li.textContent = `${nomeAluno} - ${situacao}`;
-    listaUL.appendChild(li);
-    nome.value = "";
-    nota.value = "";
-});
-
-const teste = document.getElementById("teste")
+btnAdicionar.addEventListener("click", adicionarAluno);
