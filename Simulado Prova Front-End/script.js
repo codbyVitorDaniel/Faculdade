@@ -13,7 +13,7 @@ function alterarTitulo() {
     let m = document.getElementById("input-titulo")
     const h1 = document.getElementById("titulo-principal")
     
-    h1.innerHTML = m
+    h1.textContent = m.value
     m.value = "";
 
     // TODO: 
@@ -53,9 +53,11 @@ function adicionarItem() {
         alert("Nao pode estar sem nada")
     }
 
+    const lista = document.getElementById("lista-itens")
     const li = document.createElement("li")
-    const valor = li.textContent;
-    li.appendChild(valor)
+    li.innerHTML=input.value
+    //const valor = li.textContent
+    lista.appendChild(input)
     valor_input.value = ""
     
 }
@@ -86,6 +88,7 @@ function calcularSoma() {
     novoli.textContent = `${valor1} + ${valor2} = ${soma}`
     // 6. Adicionar o <li> à lista com id "lista-calculos"
     const novoitem = document.createElementById("lista-calculos")
+    novoitem.appendChild(novoli)
     // 7. Limpar os inputs após o cálculo
     numero1.value = ""
     numero2.value = ""
