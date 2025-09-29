@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado JavaScript - Front-End</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="titulo-principal">Título Original da Página</h1>
+        
+        <!-- Seção 1: Modificar título -->
+        <section class="exercicio">
+            <h2>Exercício 1: Modificar Título</h2>
+            <p>Digite um novo título para a página:</p>
+            <input type="text" id="input-titulo" placeholder="Digite o novo título">
+            <button id="btn-alterar-titulo">Alterar Título</button>
+        </section>
+
+        <!-- Seção 2: Adicionar itens à lista -->
+        <section class="exercicio">
+            <h2>Exercício 2: Gerenciar Lista</h2>
+            <p>Adicione novos itens à lista:</p>
+            <input type="text" id="input-item" placeholder="Digite um novo item">
+            <button id="btn-adicionar-item">Adicionar Item</button>
+            
+            <h3>Lista de Itens:</h3>
+            <ul id="lista-itens">
+                <li>Item 1 (exemplo)</li>
+                <li>Item 2 (exemplo)</li>
+            </ul>
+        </section>
+
+        <!-- Seção 3: Calculadora -->
+        <section class="exercicio">
+            <h2>Exercício 3: Calculadora de Somas</h2>
+            <p>Digite dois números para somar:</p>
+            <input type="number" id="numero1" placeholder="Primeiro número">
+            <input type="number" id="numero2" placeholder="Segundo número">
+            <button id="btn-calcular">Calcular Soma</button>
+            
+            <h3>Histórico de Cálculos:</h3>
+            <ul id="lista-calculos">
+                <!-- Os resultados aparecerão aqui -->
+            </ul>
+        </section>
+
+        <!-- Seção 4: Contador de itens -->
+        <section class="exercicio">
+            <h2>Exercício 4: Contador de Itens</h2>
+            <p>Mostrar quantidade de itens nas listas:</p>
+            <button id="btn-contar">Contar Itens</button>
+            <div id="resultado-contador">
+                <!-- Os resultados aparecerão aqui -->
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
