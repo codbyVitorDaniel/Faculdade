@@ -1,0 +1,231 @@
+/* Estilos para o Simulado JavaScript - Calculadora de Notas */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #731f26 0%, #8c494f 100%);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f2f2f2;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  color: #731f26;
+  text-align: center;
+  border-bottom: 3px solid #8c494f;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+}
+
+h2 {
+  color: #731f26;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.4em;
+  border-left: 4px solid #8c494f;
+  padding-left: 15px;
+}
+
+h3 {
+  color: #8c494f;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.exercicio {
+  background: linear-gradient(135deg, #f2f2f2 0%, #a6a6a6 100%);
+  padding: 25px;
+  margin: 25px 0;
+  border-radius: 8px;
+  border-left: 5px solid #731f26;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.exercicio-content {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.input-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.resultado-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.input-section p {
+  margin-bottom: 15px;
+  color: #731f26;
+  font-weight: 500;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border: 2px solid #a6a6a6;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f2f2f2;
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: #731f26;
+  box-shadow: 0 0 0 3px rgba(115, 31, 38, 0.1);
+}
+
+button {
+  background: linear-gradient(135deg, #731f26 0%, #8c494f 100%);
+  color: #f2f2f2;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 8px 0;
+  transition: all 0.3s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #8c494f 0%, #731f26 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  border: 2px solid #a6a6a6;
+  min-height: 80px;
+  list-style: none;
+  margin: 0;
+}
+
+li {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background: linear-gradient(135deg, #f2f2f2 0%, #a6a6a6 100%);
+  border-radius: 4px;
+  border-left: 4px solid #731f26;
+  transition: all 0.3s;
+  position: relative;
+  color: #731f26;
+  font-weight: 500;
+}
+
+li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#resultado-media,
+#resultado-aprovacao,
+#resultado-estatisticas {
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  border: 2px solid #a6a6a6;
+  margin-top: 10px;
+  min-height: 80px;
+  color: #731f26;
+}
+
+.stat-item {
+  background: linear-gradient(135deg, #f2f2f2 0%, #a6a6a6 100%);
+  padding: 12px 15px;
+  margin: 8px 0;
+  border-radius: 4px;
+  border-left: 4px solid #731f26;
+  font-weight: 500;
+  color: #731f26;
+}
+
+.aprovado {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-left-color: #28a745;
+  color: #155724;
+}
+
+.reprovado {
+  background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+  border-left-color: #dc3545;
+  color: #721c24;
+}
+
+.media-alta {
+  background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+  border-left-color: #17a2b8;
+  color: #0c5460;
+}
+
+.media-baixa {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+  border-left-color: #ffc107;
+  color: #856404;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .exercicio-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .input-section,
+  .resultado-section {
+    min-width: 100%;
+  }
+
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  button {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .exercicio {
+    padding: 15px;
+  }
+}

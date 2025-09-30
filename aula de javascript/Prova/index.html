@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Prática JavaScript - Calculadora de Notas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="titulo-principal">Prova Prática - Calculadora de Notas</h1>
+
+        <!-- Seção 1: Adicionar Nota -->
+        <section class="exercicio">
+            <h2>Exercício 1: Adicionar Nota</h2>
+            <div class="exercicio-content">
+                <div class="input-section">
+                    <p>Digite uma nova nota:</p>
+                    <input type="number" id="input-nota" placeholder="Digite a nota (0-10)" min="0" max="10" step="0.1">
+                    <button id="btn-adicionar-nota">Adicionar Nota</button>
+                </div>
+                <div class="resultado-section">
+                    <h3>Lista de Notas:</h3>
+                    <ul id="lista-notas">
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 2: Calcular Média -->
+        <section class="exercicio">
+            <h2>Exercício 2: Calcular Média</h2>
+            <div class="exercicio-content">
+                <div class="input-section">
+                    <p>Calcular média das notas:</p>
+                    <button id="btn-calcular-media">Calcular Média</button>
+                </div>
+                <div class="resultado-section">
+                    <h3>Resultado:</h3>
+                    <div id="resultado-media">
+                        <!-- A média aparecerá aqui -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Verificar Aprovação -->
+        <section class="exercicio">
+            <h2>Exercício 3: Verificar Aprovação</h2>
+            <div class="exercicio-content">
+                <div class="input-section">
+                    <p>Verificar se foi aprovado (média >= 6.0):</p>
+                    <button id="btn-verificar-aprovacao">Verificar Aprovação</button>
+                </div>
+                <div class="resultado-section">
+                    <h3>Status:</h3>
+                    <div id="resultado-aprovacao">
+                        <!-- Status de aprovação aparecerá aqui -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Estatísticas das Notas -->
+        <section class="exercicio">
+            <h2>Exercício 4: Estatísticas das Notas</h2>
+            <div class="exercicio-content">
+                <div class="input-section">
+                    <p>Gerar estatísticas das notas:</p>
+                    <button id="btn-gerar-estatisticas">Gerar Estatísticas</button>
+                </div>
+                <div class="resultado-section">
+                    <h3>Estatísticas:</h3>
+                    <div id="resultado-estatisticas">
+                        <!-- Estatísticas aparecerão aqui -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
