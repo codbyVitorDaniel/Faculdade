@@ -296,6 +296,7 @@ class Biblioteca:
     
     def buscar_livro_por_titulo(self, titulo):
         buscar = input("Digite o nome do Livro\nR:")
+        titulo
         for lista 
         """
         Busca um livro pelo título.
