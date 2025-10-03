@@ -25,29 +25,35 @@ DELETE FROM matriculas WHERE aluno_id = 2 AND curso_id = 3;
 -- Q5
 SELECT id, nome, UPPER(nome) AS nome_maiusculo FROM alunos;
 
--- Q6
+-- Q6 nao cai na prova
 SELECT nome, TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) AS idade_anos 
 FROM alunos ORDER BY idade_anos DESC;
 
 -- Q7
-SELECT DISTINCT cidade FROM alunos ORDER BY cidade ASC;
+SELECT DISTINCT cidade 
+FROM alunos 
+ORDER BY cidade ASC;
 
 -- Q8
-SELECT * FROM alunos WHERE nome LIKE ‘F%’;
+SELECT * 
+FROM alunos 
+WHERE nome LIKE "F%";
 
 -- Q9
 SELECT nome, data_nascimento FROM alunos 
-WHERE data_nascimento BETWEEN ‘1995-01-01’ AND ‘2000-12-31’;
+WHERE data_nascimento BETWEEN "1995-01-01" AND "2000-12-31";
 
--- Q10
+-- Q10 nao vai passar o timestampdiff
 SELECT COUNT(*) AS total FROM alunos 
 WHERE TIMESTAMPDIFF(YEAR, data_nascimento, CURDATE()) >= 25;
 
 -- Q11
-SELECT cidade, COUNT(*) AS total FROM alunos 
-GROUP BY cidade ORDER BY total DESC;
+SELECT cidade, COUNT(*) AS total 
+FROM alunos 
+GROUP BY cidade 
+ORDER BY total DESC;
 
--- Q12
+-- Q12 5 inner join 3 having 3 group by 1 de add 1 de drop e 1 de modify update lead like btween sun count average count timestanp valores default distint select year WHERE nome LIKE "F%";
 SELECT cidade, COUNT(*) AS total FROM alunos 
 GROUP BY cidade HAVING COUNT(*) >= 2;
 
@@ -100,3 +106,4 @@ FROM alunos GROUP BY YEAR(data_nascimento) HAVING COUNT(*) >= 2;
 
 -- Q27
 SELECT nome, carga_horaria FROM cursos 
+ORDER BY carga_horaria DESC LIMIT 3;
