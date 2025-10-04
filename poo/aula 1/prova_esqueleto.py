@@ -283,9 +283,10 @@ class Biblioteca:
         """
     
     def listar_livros(self):
+        print(f"Livros da {self.nome}:")
         for livro in self.lista:
-            for i in livro:
-                print(f"Livros {livro} na {i}")
+            print(livro)
+
         """
         Lista todos os livros da biblioteca.
         TODO 16: Implemente a lógica para imprimir todos os livros
@@ -295,8 +296,16 @@ class Biblioteca:
         """
     
     def buscar_livro_por_titulo(self, titulo):
-        buscar = input("Digite o nome do Livro\nR:")
-        for lista 
+        self.titulo = titulo.lower()
+        for li in self.lista:
+            for titu in titulo:
+                if li == titu:
+                    busca = li
+                    print(f"Livro encontrado {busca}")
+                    return True
+                else:
+                    print("Livro nao encontrado")
+                    return False
         """
         Busca um livro pelo título.
         TODO 17: Implemente a busca e retorne o primeiro livro encontrado
@@ -308,6 +317,14 @@ class Biblioteca:
         
     
     def emprestar_livro(self, titulo):
+        self.titulo = titulo.lower()
+        buscar = Biblioteca.buscar_livro_por_titulo(self.titulo)
+        if buscar == True:
+            print ("Emprestimo")
+        elif buscar == False:
+            print("Livro nao disponivel na biblioteca")
+        else:
+            print("Livro nao esta disponivel na biblioteca")
         """
         Empresta um livro pelo título.
         TODO 18: Implemente a lógica:
@@ -320,6 +337,15 @@ class Biblioteca:
         pass
     
     def devolver_livro(self, titulo):
+        self.titulo = titulo
+        buscar = Biblioteca.buscar_livro_por_titulo(self.titulo)
+        if buscar == True:
+            print("Livro devolvido com sucesso!")
+
+        elif buscar == False:
+            print("Livro ja estava disponivel")
+        else:
+            print("Livro nao disponivel na biblioteca")
         """
         Devolve um livro pelo título.
         TODO 19: Implemente a lógica:
@@ -329,7 +355,7 @@ class Biblioteca:
         - Se não encontrado pelo titulo, retorne "Livro não disponível na biblioteca"
         - Fique a vontade para criar uma mensagem legal.
         """
-        pass
+
     
     # TODO 20: Implemente um método estático para validar nome da biblioteca
     # O método deve verificar se o nome da biblioteca é válido (não vazio e sem números)
@@ -338,11 +364,17 @@ class Biblioteca:
     # Dica3: use isinstance(nome, str) para verificar se o nome é uma string.
     # Implemente a logica que quiser, mas deve retornar True se o nome da biblioteca for válido, False caso contrário.
     @staticmethod
-    def validar_nome_biblioteca(nome):
+    def validar_nome_biblioteca(self,nome):
+        self.nome = nome.strip()
+        if not self.nome.isalpha():
+            print("Digite apenas letras")
+            return False
+        else:
+            return True
+        
         """
         Valida se o nome da biblioteca é válido (não vazio e sem números).
         """
-        pass
     
 
 
@@ -372,6 +404,16 @@ class Biblioteca:
 # ===========================================
 
 def testar_sistema():
+    biblioteca = Biblioteca.criar_biblioteca_exemplo()
+
+    biblioteca.listar_livros()
+    print(biblioteca.emprestar_livro("Python Avançado"))
+    print(biblioteca.emprestar_livro("Python Avançado"))
+    print(biblioteca.devolver_livro("Python Avançado"))
+    print(biblioteca.devolver_livro("Python Avançado"))
+    print(biblioteca.buscar_livro_por_titulo("Algoritmos"))
+    print(biblioteca.emprestar_livro("Livro Inexistente"))
+
     """
     Função para testar o sistema implementado.
     TODO 21: Implemente os testes:
@@ -383,7 +425,7 @@ def testar_sistema():
 
     4. Liste os livros
 
-    5. Teste buscas
+    5. Teste buscas 
     
     """
     pass
@@ -400,4 +442,4 @@ if __name__ == "__main__":
     print("=" * 40)
     
     # Descomente a linha abaixo para testar
-    # testar_sistema()
+    testar_sistema()

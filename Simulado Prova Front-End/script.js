@@ -70,25 +70,33 @@ function adicionarItem() {
 function calcularSoma() {
     // TODO:
     // 1. Pegar os valores dos inputs com id "numero1" e "numero2"
+    
     let numero1 = document.getElementById("numero1")
     let numero2 = document.getElementById("numero2")
     // 2. Converter os valores para números usando Number() ou parseInt()
-    const valor1 = number(numero1)
-    const valor2 = number(numero2)
+    
+    const valor1 = parseFloat(numero1.value)
+    const valor2 = parseFloat(numero2.value)
+    
+    
+    
     // 3. Verificar se ambos os valores são números válidos
-     if (isNumber(valor1) && isNumber(valor2)){
-        alert("Fucionou")
-    }else{
-        alert("So aceita numeros")
-    }
+   // if (isNumber(valor1) && isNumber(valor2)){
+   //     alert("Fucionou")
+   // }else{
+   //     alert("So aceita numeros")
+    //}
     // 4. Calcular a soma
     const soma = valor1 + valor2
+    
     // 5. Criar um novo <li> com o texto da operação (ex: "5 + 3 = 8")
     const novoli = document.createElement("li");
     novoli.textContent = `${valor1} + ${valor2} = ${soma}`
+    
     // 6. Adicionar o <li> à lista com id "lista-calculos"
-    const novoitem = document.createElementById("lista-calculos")
+    const novoitem = document.getElementById("lista-calculos")
     novoitem.appendChild(novoli)
+    alert(novoli.textContent)
     // 7. Limpar os inputs após o cálculo
     numero1.value = ""
     numero2.value = ""
