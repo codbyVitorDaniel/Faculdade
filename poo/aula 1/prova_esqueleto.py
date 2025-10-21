@@ -1,42 +1,8 @@
-# ===========================================
-# Universidade de Vassouras - Campus Maricá
-# SIMULADO - ORIENTAÇÃO A OBJETOS EM PYTHON 2025.1
-# Prof. Tiago Ruiz de Castro 
-# ===========================================
-# LEIA TODAS AS INSTRUÇÕES COM ATENÇÃO ANTES DE COMEÇAR
-# INSTRUÇÕES:
-# 1. Complete o código abaixo implementando as funcionalidades solicitadas
-# 2. Cada seção tem comentários indicando exatamente o que implementar
-# 3. NÃO altere a estrutura básica, apenas complete as partes marcadas
-# 4. Teste seu código antes de entregar
-#
-# CONCEITOS A SEREM APLICADOS:
-# - Atributos (públicos e privados)
-# - Métodos (instância, estáticos e de classe)
-# - Herança
-# - Polimorfismo
-# - Encapsulamento (getters e setters)
-# - Métodos Estáticos (@staticmethod)
-# - Métodos de Classes (@classmethod)
-#
-# ===========================================
-
-# ===========================================
-# PARTE 1: CLASSE BASE LIVRO
-# ===========================================
-
 class Livro:
     """
     Classe base para representar um livro na biblioteca.
     Chamamos isso aqui também de classe mãe ou classe pai, ou de superclasse.
     """
-    
-    # TODO 1: Crie os atributos da classe (públicos e privados)
-    # - titulo (público)
-    # - autor (público) 
-    # - _isbn (privado)
-    # - _disponivel (privado)
-    # - _total_emprestimos (privado)
     
     def __init__(self, titulo, autor, isbn):
         self.titulo = titulo
@@ -44,38 +10,32 @@ class Livro:
         self._isbn = isbn
         self._disponivel = True
         self._total_emprestimos = 0
-        """
-        Construtor da classe Livro.
-        TODO 2: Implemente o construtor inicializando todos os atributos 
-                descritos no TODO 1. (Use EXATAMENTE ESSA NOMENCLATURA PARA OS ATRIBUTOS)
-        """
+    
     @property
     def isbn(self):
         return self._isbn
+
     @isbn.setter
-    def isbn (self, valor):
-        if self.validar_isbn:
+    def isbn(self, valor):
+        if Livro.validar_isbn(valor):
             self._isbn = valor
         else:
-            print("Invalido")
+            print("ISBN inválido. Deve ter 13 dígitos.")
+
     @property
     def disponivel(self):
         return self._disponivel
+
     @disponivel.setter
-    def disponivel(self,valor):
-        if self.disponivel.isinstance(valor, bool):
+    def disponivel(self, valor):
+        if isinstance(valor, bool):
             self._disponivel = valor
         else:
-            print("Valor incorreto")
+            print("Valor de disponibilidade inválido. Deve ser booleano.")
     
     @property
     def total_emprestimos(self):
         return self._total_emprestimos
-    
-    # TODO 3: Implemente os getters e setters para os atributos privados
-    # - getter e setter para _isbn (PARA O SETTER USE O METODO ESTÁTICO validar_isbn)
-    # - getter e setter para _disponivel (para o setter, o valor deve ser um booleano)
-    # - Somente getter para _total_emprestimos (ESSE AQUI É APENAS LEITURA)
     
     def emprestar(self):
         if self._disponivel:
@@ -83,210 +43,115 @@ class Livro:
             self._total_emprestimos += 1
             return True
         else:
-            return False    
-        """
-        Método para emprestar o livro.
-        TODO 4: Implemente a lógica:
-        - Se o livro estiver disponível, marque como indisponível
-        - Incremente o contador de empréstimos
-        - RETORNE True se emprestado com sucesso, False caso contrário
-        """
+            return False
     
     def devolver(self):
         if not self.disponivel:
             self.disponivel = True
             return True
         else:
-            print("Livro nao devolvido")
+            print("Livro não devolvido")
             return False
-        """
-        Método para devolver o livro.
-        TODO 5: Implemente a lógica:
-        - Marque o livro como disponível
-        - RETORNE True se devolvido com sucesso, False caso contrário
-        """
     
     def __str__(self):
-        """
-        Método especial para representação em string. (JÁ ESTÁ IMPLEMENTADO. NÃO ALTERE!)
-        """
         status = "Sim" if self._disponivel else "Não"
         return f"Livro: {self.titulo} - Autor: {self.autor} - Disponível: {status}"
 
-    
-    # TODO 6: Implemente um método estático para validar ISBN
-    # O método deve verificar se o ISBN tem exatamente 13 dígitos
-    # Tem varias formas de fazer isso. 
-    # Dica: se quiser, use a função .isdigit() e len() 
     @staticmethod
     def validar_isbn(isbn):
-        if isbn.isdigit():
-            digit = isbn.len()
-            return digit
-        else:
-            print("Nao e numero")
-    
+        return len(isbn) == 13 and isbn.isdigit()
 
-    # TODO 7: Implemente um método de classe para criar livro de exemplo
-    # O método deve retornar uma instância de Livro com dados de exemplo
-    # O exemplo deve retornar: "titulo do livro",  "autor do livro", "isbn do livro"
     @classmethod
     def criar_livro_exemplo(cls):
         return cls("vitor", "Daniel", "123456")
 
 
-# ===========================================
-# PARTE 2: HERANÇA - LIVRO DIGITAL
-# ===========================================
-
 class LivroDigital(Livro):
-    """
-    Classe que herda de Livro para representar livros digitais.
-    """
     def __init__(self, titulo, autor, isbn, tamanho_mb, formato):
         super().__init__(titulo, autor, isbn)
-        self.tamanho_mb = tamanho_mb
-        self.formato = formato
-        """
-        Construtor da classe LivroDigital.
-        TODO 8: Implemente o construtor:
-        - Chame o construtor da classe pai (super().__init__(......))
-        - Adicione os novos atributos COM EXATAMENTE ESSA NOMENCLATURA: 
-                - tamanho_mb 
-                - formato
-        """
+        self._tamanho_mb = tamanho_mb
+        self._formato = formato
+
     @property
-    def tama_mb(self):
-        return self.tamanho_mb
-    @tama_mb.setter
-    def tama_mb(self, valor):
+    def tamanho_mb(self):
+        return self._tamanho_mb
+
+    @tamanho_mb.setter
+    def tamanho_mb(self, valor):
         if valor > 0:
-            self.tamanho_mb = valor
+            self._tamanho_mb = valor
         else:
-            print("Valor nao e maior que 0")
+            print("Tamanho inválido. Deve ser maior que 0.")
     
     @property
     def formato(self):
-        return self.formato
+        return self._formato
+
     @formato.setter
-    def formato(self,valor):
+    def formato(self, valor):
         if isinstance(valor, str):
-            self.formato = valor
+            self._formato = valor
         else:
-            print("O valor nao e uma string")
-    # TODO 9: Implemente getters e setters para os novos atributos
-    # - getter e setter para tamanho_mb ( para o setter, o valor deve ser positivo ou seja, maior que 0 )
-    # - getter e setter para formato ( para o setter, o valor deve ser uma string )
+            print("Formato inválido. Deve ser uma string.")
     
     def __str__(self):
-        """
-        Método especial para representação em string. >> (JÁ ESTA IMPLEMENTADO. NÃO ALTERE.) <<
-        """
         status = "Sim" if self.disponivel else "Não"
-        return f"Livro Digital: {self.titulo} - Autor: {self.autor} - Formato: {self.formato} - Disponível: {status}"
-
+        return f"Livro Digital: {self.titulo} - Autor: {self.autor} - Formato: {self._formato} - Disponível: {status}"
     
-    # TODO 10: Implemente um método específico para livros digitais
     def obter_informacoes_tecnica(self):
-        return f"Formato:{self.formato} - tamanho: {self.tamanho_mb} MB"
-        """
-        Retorna informações técnicas do livro digital.
-        RETORNE: "Formato: [formato] - Tamanho: [tamanho_mb] MB"
-        """
+        return f"Formato:{self._formato} - Tamanho: {self._tamanho_mb} MB"
 
-
-# ===========================================
-# PARTE 3: HERANÇA - LIVRO FÍSICO
-# ===========================================
 
 class LivroFisico(Livro):
-    """
-    Classe que herda de Livro para representar livros físicos.
-    """
     def __init__(self, titulo, autor, isbn, numero_paginas, localizacao):
         super().__init__(titulo, autor, isbn)
-        self.numero_paginas = numero_paginas
-        self.localizacao = localizacao
-        """
-        Construtor da classe LivroFisico.
-        TODO 11: Implemente o construtor:
-        - Chame o construtor da classe pai (super().__init__(......))
-        - Adicione os novos atributos COM EXATAMENTE ESSA NOMENCLATURA: 
-                - numero_paginas 
-                - localizacao
-        """
-    @property
-    def numero_pro(self):
-        return self.numero_paginas
-    
-    @numero_pro.setter
-    def numero_pro(self,valor):
-        self.numero_paginas = valor
-    
-    @property
-    def localizacao_pro(self):
-        return self.localizacao
-    @localizacao_pro.setter
-    def localizacao_pro(self,valor):
-        self.localizacao = valor
+        self._numero_paginas = numero_paginas
+        self._localizacao = localizacao
 
-    # TODO 12: Implemente getters e setters para os novos atributos
-    # - getter e setter para numero_paginas
-    # - getter e setter para localizacao
+    @property
+    def numero_paginas(self):
+        return self._numero_paginas
     
+    @numero_paginas.setter
+    def numero_paginas(self, valor):
+        if valor > 0:
+            self._numero_paginas = valor
+        else:
+            print("Número de páginas inválido.")
 
-    #Aqui eu ja implementei o metodo especial para representação em string.
+    @property
+    def localizacao(self):
+        return self._localizacao
+    
+    @localizacao.setter
+    def localizacao(self, valor):
+        if isinstance(valor, str):
+            self._localizacao = valor
+        else:
+            print("Localização inválida. Deve ser uma string.")
+    
     def __str__(self):
-        """
-        Método especial para representação em string. (JÁ ESTÁ IMPLEMENTADO. NÃO ALTERE!)
-        """
         status = "Sim" if self.disponivel else "Não"
-        return f"Livro Físico: {self.titulo} - Autor: {self.autor} - Páginas: {self.numero_paginas} - Disponível: {status}"
+        return f"Livro Físico: {self.titulo} - Autor: {self.autor} - Páginas: {self._numero_paginas} - Disponível: {status}"
 
-
-    
-    # TODO 13: Implemente um método específico para livros físicos
     def obter_informacoes_fisicas(self):
-        return f"Paginas:{self.numero_paginas} - Localizaçao: {self.localizacao}"
-        """
-        Retorna informações físicas do livro.
-        RETORNE : "Páginas: [numero_paginas] - Localização: [localizacao]"
-        """
-        
+        return f"Páginas: {self._numero_paginas} - Localização: {self._localizacao}"
 
-
-# ===========================================
-# PARTE 4: POLIMORFISMO - BIBLIOTECA
-# ===========================================
 
 class Biblioteca:
-    """
-    Classe para gerenciar uma biblioteca com diferentes tipos de livros.
-    AQUI NÃO PRECISA CHAMAR O CONSTRUTOR DA CLASSE PAI.
-    """
-    
     def __init__(self, nome):
         self.nome = nome
         self.lista = []
-        """
-        Construtor da classe Biblioteca.
-        TODO 14: Implemente o seguinte no construtor:
-        - Inicialize o atributo: nome 
-        - Inicialize uma LISTA vazia para armazenar os livros.
-        """
-    
+
     def adicionar_livro(self, livro):
         self.lista.append(livro)
-        """
-        Adiciona um livro à biblioteca.
-        TODO 15: Implemente a lógica para adicionar um livro à lista
-        """
     
     def listar_livros(self):
         print(f"Livros da {self.nome}:")
         for livro in self.lista:
             print(livro)
 
+<<<<<<< HEAD
         """
         Lista todos os livros da biblioteca.
         TODO 16: Implemente a lógica para imprimir todos os livros
@@ -376,14 +241,38 @@ class Biblioteca:
         Valida se o nome da biblioteca é válido (não vazio e sem números).
         """
     
+=======
+    def buscar_livro_por_titulo(self, titulo):
+        for livro in self.lista:
+            if livro.titulo.lower() == titulo.lower():
+                return livro
+        return "Livro não encontrado"
+    
+    def emprestar_livro(self, titulo):
+        livro = self.buscar_livro_por_titulo(titulo)
+        if isinstance(livro, Livro):
+            if livro.emprestar():
+                return f"Livro '{titulo}' emprestado com sucesso!"
+            else:
+                return "Livro não disponível para empréstimo."
+        return "Livro não disponível na biblioteca."
 
+    def devolver_livro(self, titulo):
+        livro = self.buscar_livro_por_titulo(titulo)
+        if isinstance(livro, Livro):
+            if livro.devolver():
+                return f"Livro '{titulo}' devolvido com sucesso!"
+            else:
+                return "Livro já estava disponível."
+        return "Livro não encontrado na biblioteca."
 
-    #Aqui eu ja implementei o metodo de classe para criar biblioteca de exemplo.
+    @staticmethod
+    def validar_nome_biblioteca(nome):
+        return isinstance(nome, str) and nome.strip().isalpha()
+>>>>>>> 528b2f2d6f2888bd9f87e542da58aa61b8253a64
+
     @classmethod
     def criar_biblioteca_exemplo(cls):
-        """
-        Aqui eu implementei uma biblioteca de exemplo com alguns livros.(JA ESTA IMPLEMENTADO. NÃO ALTERE.)
-        """
         biblioteca = cls("Biblioteca Central")
         
         # Adicionando livros de exemplo
@@ -399,12 +288,10 @@ class Biblioteca:
         
         return biblioteca
 
-# ===========================================
-# PARTE 5: TESTE DO SISTEMA
-# ===========================================
 
 def testar_sistema():
     biblioteca = Biblioteca.criar_biblioteca_exemplo()
+<<<<<<< HEAD
 
     biblioteca.listar_livros()
     print(biblioteca.emprestar_livro("Python Avançado"))
@@ -418,22 +305,32 @@ def testar_sistema():
     Função para testar o sistema implementado.
     TODO 21: Implemente os testes:
     1. Crie uma biblioteca
+=======
+>>>>>>> 528b2f2d6f2888bd9f87e542da58aa61b8253a64
 
-    2. Adicione livros de diferentes tipos
+    # Listando livros
+    biblioteca.listar_livros()
 
-    3. Teste empréstimos e devoluções
+    # Emprestando livro
+    print(biblioteca.emprestar_livro("Python Avançado"))
 
-    4. Liste os livros
+    # Devolvendo livro
+    print(biblioteca.devolver_livro("Python Avançado"))
 
+<<<<<<< HEAD
     5. Teste buscas 
     
     """
     pass
+=======
+    # Buscando livro
+    livro_encontrado = biblioteca.buscar_livro_por_titulo("Orientação a Objetos")
+    print(livro_encontrado)
+>>>>>>> 528b2f2d6f2888bd9f87e542da58aa61b8253a64
 
+    # Emprestando livro novamente
+    print(biblioteca.emprestar_livro("Estruturas de Dados"))
 
-# ===========================================
-# EXECUÇÃO PRINCIPAL
-# ===========================================
 
 if __name__ == "__main__":
     print("=== SIMULADO - ORIENTAÇÃO A OBJETOS ===")
