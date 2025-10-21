@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas - Lab. de Programação Front-End</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Gerenciador de Lista</h1>
+
+        <div class="content">
+            <!-- Div da Esquerda: Formulário -->
+            <div class="form-section">
+                <h2>Adicionar Item</h2>
+                <!-- Botão para ocultar o item input -->
+                <button class="botao" onclick="clicou()">Ocultar Item</button>
+                <!-- Formulário para adicionar itens -->
+                <form id="itemForm">
+                    <div class="input-group">
+                        <label for="itemInput">Digite um item:</label>
+                        <input type="text" id="itemInput" placeholder="Ex: Comprar leite" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Adicionar</button>
+                </form>
+            </div>
+
+            <!-- Div da Direita: Lista -->
+            <div class="list-section">
+                <h2>Itens Cadastrados</h2>
+                <ul id="itemList" class="item-list">
+                    <!-- Os itens serão adicionados aqui via JavaScript -->
+                </ul>
+
+                <h3 style="color: rgb(49, 49, 49);">Botões Manipuladores: </h3>
+                <!-- Botão para contar itens usando forEach -->
+                <button class = "btn-contar" id= 'contarItens'></button>
+                <!-- Botão 01 para Manipular Cor da Lista -->
+                
+                <!-- Botão 02 para Manipular Cor da Lista -->
+                
+                <!-- Botão para Trabalhar com Classes dentro do DOM -->
+                
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
