@@ -1,11 +1,11 @@
 // Arquivo JavaScript para os alunos implementarem
-// Sugestões de funcionalidades para implementar:
-// 1. Capturar o evento de submit do formulário
+// SugestÃµes de funcionalidades para implementar:
+// 1. Capturar o evento de submit do formulÃ¡rio
 // 2. Pegar o valor do input
 // 3. Criar um elemento <li> com o valor digitado
 // 4. Adicionar o <li> na lista (ul#itemList)
-// 5. Limpar o input após adicionar
-// 6. (Extra) Adicionar botão de remover em cada item da lista
+// 5. Limpar o input apÃ³s adicionar
+// 6. (Extra) Adicionar botÃ£o de remover em cada item da lista
 
 const itemForm = document.getElementById('itemForm')
 const itemInput = document.getElementById('itemInput')
@@ -15,7 +15,7 @@ const itemList = document.getElementById('itemList')
 // ou itemList = document.querySelector("#itemList");
 
 itemForm.addEventListener('submit', (e) => {
-  e.preventDefault() //previne o recarregamento da pagina quando o formulario é enviado
+  e.preventDefault() //previne o recarregamento da pagina quando o formulario Ã© enviado
   const item = itemInput.value
   const li = document.createElement('li')
 
@@ -35,13 +35,13 @@ itemForm.addEventListener('submit', (e) => {
   //jeito certo
   const removerButton = document.createElement('button')
   removerButton.textContent = 'Remover'
-  // Adiciona o botão DENTRO do <li>
+  // Adiciona o botÃ£o DENTRO do <li>
   li.appendChild(removerButton)
   //li.preped(removerButton); //adiciona o botao antes do texto do item
 
-  // Adiciona o evento de clique no botão para remover o item
+  // Adiciona o evento de clique no botÃ£o para remover o item
   removerButton.addEventListener('click', () => {
-    // Remove o <li> pai do botão
+    // Remove o <li> pai do botÃ£o
     li.remove()
   })
   // //-----------------------------
@@ -68,15 +68,15 @@ function clicou() {
 // ========================================
 // EXEMPLO DE USO DO forEach
 // ========================================
-// O forEach é um método que percorre cada elemento de um array ou lista
-// Ele executa uma função para cada item encontrado
+// O forEach Ã© um mÃ©todo que percorre cada elemento de um array ou lista
+// Ele executa uma funÃ§Ã£o para cada item encontrado
 
-// 1. Selecionar o botão que foi criado no HTML
+// 1. Selecionar o botÃ£o que foi criado no HTML
 const botaoContar = document.getElementById('contarItens')
 
 //ou const botaoContar = document.querySelector("#contarItens");
 
-// 2. Adicionar um evento de clique no botão
+// 2. Adicionar um evento de clique no botÃ£o
 botaoContar.addEventListener('click', () => {
   const todosOsItens = document.querySelectorAll('#itemList li')
   let contador = 0
@@ -90,10 +90,10 @@ botaoContar.addEventListener('click', () => {
   console.log(`==== Total de Itens: ${contador}`)
 })
 // RESUMO DO forEach:
-// forEach(função) - executa a função para cada elemento
+// forEach(funÃ§Ã£o) - executa a funÃ§Ã£o para cada elemento
 // Sintaxe: array.forEach((elemento, indice) => { ... })
 // - elemento: o item atual sendo percorrido
-// - indice: a posição do item (opcional)
+// - indice: a posiÃ§Ã£o do item (opcional)
 
 // Modo 1
 function clicouMudaCor() {
@@ -149,28 +149,3 @@ function clicouClasses(){
     mudarClasses.classList.replace("Vermelho", "Azul")
   }
 }
-
-// Aula 27/10/2025 aqui para baixo:
-
-function apertou() {
-  console.log('APERTOU A TECLA!')
-}
-
-
-function segurou() {
-  console.log('SEGUROU A TECLA!')
-}
-
-
-function soltou(e) {
-  console.log(`Tecla Apertada: ${e.code}`);
-  console.log(`Apertou o Shift? ${e.shiftkey}`);
-  console.log(`======`);
-  console.log(`Apertou o Ctrl? ${e.ctrlkey}`);
-  console.log(`======`);
-  console.log(`Apertou o Alt? ${e.altkey}`);
-  console.log(`======`);
-}
-
-const input = document.querySelector('input')
-input.addEventListener('keyup', soltou)
