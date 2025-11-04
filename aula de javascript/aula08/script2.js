@@ -17,8 +17,9 @@ class Student extends Person1{
     }
 }
 
-pessoa1 = new Student('Joaquim')
-pessoa1 = new Student('OI')
-pessoa1 = new Student('GOl')
-pessoa1.age = 20
+function newPerson(name, age) {
+    let p1 = new Person(name);
+    p1.age = age;
+    return p1
+}
 console.log(`Meus personagens tem: ${pessoa1.hands}`)
