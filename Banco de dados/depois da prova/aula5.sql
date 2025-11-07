@@ -134,8 +134,60 @@ SELECT nome
 FROM clientes
 WHERE id IN (SELECT id_cliente FROM pedidos);
 
-
 -- Liste o nome dos clientes que NÂO fizeram pedido -- IN
 SELECT nome
 FROM clientes
 WHERE id NOT IN (SELECT id_cliente FROM pedidos);
+
+/* Subquery no FROM (subconsulta com tabela)
+ Liste a quantidade total vendida
+ utilizando uma subconsulta para calcular o total de
+ cada produto primeiro
+*/
+
+SELECT p.nome, sub.total_vendido
+FROM(
+	SELECT id_produto, SUM(quantidade) AS total_vendido
+    FROM itens_pedido
+    GROUP BY id_produto
+) AS sub
+JOIN produtos p ON p.id = sub.id_produto;
+
+SELECT id_produto, SUM(quantidade) AS total_vendido
+FROM itens_pedido
+GROUP BY id_produto;
+
+-- Subquery correlacionada
+-- Liste o nome dos produtos cujo preço é maior do que a média
+-- dos produtos do mesmo pedido.
+
+SELECT p.nome
+FROM produtos p
+WHERE preco > (
+	SELECT AVG(p2.preco)
+    FROM produtos p2
+    WHERE p2.id <> p.id
+);
+
+-- Mostre as cidades com números de pedidos acima da média geral
+-- de pedidos por cidade
+
+SELECT c.cidade, COUNT(p.id) AS total_pedidos
+FROM clientes c
+JOIN pedidos p ON p.id_cliente = c.id
+GROUP BY c.cidade
+HAVING COUNT(p.id) > (
+	SELECT AVG(total)
+    FROM(
+    SELECT COUNT(p2.id) AS total
+    FROM clientes c2
+    JOIN pedidos p2 ON p2.id_cliente = c2.id
+    GROUP BY c2.cidade
+    ) AS sub
+);
+
+SELECT c.cidade, COUNT(p.id) AS total_pedidos
+FROM clientes c
+JOIN pedidos p ON p.id_cliente = c.id
+GROUP BY c.cidade;
+
