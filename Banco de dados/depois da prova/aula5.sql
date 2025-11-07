@@ -190,4 +190,118 @@ SELECT c.cidade, COUNT(p.id) AS total_pedidos
 FROM clientes c
 JOIN pedidos p ON p.id_cliente = c.id
 GROUP BY c.cidade;
+CREATE DATABASE IF NOT EXISTS loja;
+USE loja;
 
+CREATE TABLE clientes(
+id INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(60) NOT NULL,
+cidade VARCHAR(50) NOT NULL,
+criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE pedidos(
+id INT PRIMARY KEY AUTO_INCREMENT,
+id_cliente INT,
+valor_total DECIMAL(10,2),
+data_pedido DATE,
+FOREIGN KEY(id_cliente) REFERENCES clientes(id)
+);
+
+INSERT INTO clientes(nome, cidade)
+VALUES
+("Ana","Maricá"),
+("Bruno","Niterói"),
+("Camile","Itaboraí");
+
+INSERT INTO pedidos(id_cliente, valor_total, data_pedido)
+VALUES
+(1,150.00,'2024-10-01'),
+(1,80.00,'2024-10-15'),
+(2,250.00,'2025-10-20'),
+(3,70.00,'2025-01-12');
+
+/*STORED PROCEDURE*/
+
+/*
+É um conjunto de comandos SQL armazenados no servidor de banco de dados
+Ela é criada uma vez e pode ser executada várias vezes, facilitando a
+automação
+*/
+
+/* Principais Vantagens de
+1 - Reutirlização de Código
+2 - Melhor Performance(Executa no servidor, não precisa enviar
+vários comandos)
+3 - Segurança(controle total de acesso e encapsulamento da
+lógica de negócio)
+4 - Padronização das operações complexas
+*/
+
+-- Criar a nossa primeira procedure
+-- Listar os clientes
+
+DELIMITER $$
+
+CREATE PROCEDURE listar_clientes()
+BEGIN
+	SELECT * FROM clientes;
+END $$
+
+DELIMITER ;
+
+CALL listar_clientes();
+
+-- Procedure com parâmetros de entrada
+DELIMITER $$
+
+CREATE PROCEDURE pedidos_por_cliente(IN idBusca INT)
+BEGIN
+	SELECT c.nome, p.valor_total, p.data_pedido
+    FROM clientes c
+    JOIN pedidos p ON c.id = p.id_cliente
+    WHERE c.id = idBusca;
+END $$
+
+DELIMITER ;
+CALL pedidos_por_cliente(1);
+
+-- Procedure com parâmetros de saída
+DELIMITER $$
+
+CREATE PROCEDURE total_clientes(IN idCliente INT, OUT total DECIMAL(10,2))
+BEGIN
+	SELECT SUM(valor_total) INTO total
+    FROM pedidos
+    WHERE id_cliente = idCliente;
+END $$
+
+DELIMITER ;
+
+CALL total_clientes(1, @resultado);
+SELECT @resultado AS total_do_cliente_1;
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE verificar_compras(IN idcliente INT)
+BEGIN
+	DECLARE totalPedidos INT;
+    
+    SELECT COUNT(*) INTO totalPedidos
+    FROM pedidos
+    WHERE id_cliente = idcliente;
+    
+    IF totalPedidos > 0 THEN
+		SELECT CONCAT('O cliente possui ', totalPedidos, ' pedidos.') AS mensagem;
+	ELSE
+		SELECT 'O cliente não possui pedidos' AS mensagem;
+	END IF;
+END $$
+
+DELIMITER ;
+
+CALL verificar_compras(1);
+
+DROP PROCEDURE IF EXISTS verificar_compras;
