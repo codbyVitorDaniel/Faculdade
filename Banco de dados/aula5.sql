@@ -73,3 +73,79 @@ DELIMITER ;
 SHOW TRIGGERS;
 INSERT INTO produtos(nome, preco, estoque)
 VALUES("Teclado", -50, 20);
+
+/*
+Cria um trigger que salvar em uma tabela de
+histórico o estoque.
+
+update e insert
+*/
+/*Transação*/
+/*
+Uma transação é um conjunto de operações SQL
+que devem ser executadas como uma unidade de
+trabalho. De forma geral, ou tudo é executado
+com sucesso, ou nada é aplicado.
+
+Exemplos de situações que exigem transações:
+1 - Transferência de dinheiro entre contas.
+2 - Atualizações em múltiplas tabelas
+relacionadas.
+3 - Processos críticos que não podem ficar pela
+metade.
+*/
+/* ACID - Propriedades
+A - Atomicidade: Todas as operações da transação
+são executadas completamente ou nenhuma é.
+C - Consistência: O banco permanece em um estado
+válido, antes e depois da transação.
+I - Isolamento: Transações não interferem umas nas
+outras.
+D - Durabilidade: Após o COMMIT, as mudanças são
+permanentes mesmo após a falha.
+*/
+-- Comandos
+/*
+START TRANSACTION: Inicia uma nova transação.
+COMMIT: Confirma as operações da transação.
+ROLLBACK: Cancela as operações realizadas desde o
+último commit ou savepoint.
+SAVEPOINT nome: Cria um ponto de restauração dentro
+da transação.
+ROLLBACK TO nome: Retorna ao ponto definido pelo
+SAVEPOINT.
+*/
+CREATE DATABASE bancoAula;
+USE bancoAula;
+
+CREATE TABLE contas(
+id INT AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(50),
+saldo DECIMAL(10,2)
+);
+INSERT INTO contas(nome, saldo)
+VALUES
+("Fabricio", 1000.00),
+("José", 500.00);
+
+-- INICIA A TRANSAÇÃO
+START TRANSACTION;
+
+-- 1. Retirada de R$200,00 da conta do Fabricio
+UPDATE contas
+SET saldo = saldo -200
+WHERE nome = "Fabricio";
+SAVEPOINT ponto1;
+
+-- 2. Adicionar R$200,00 na conta do José
+UPDATE contas
+SET saldo = saldo + 200
+WHERE nome = "José";
+-- Se tudo deu certo
+SAVEPOINT ponto2;
+
+COMMIT;
+
+ROLLBACK TO ponto1;
+
+SELECT * FROM contas;
