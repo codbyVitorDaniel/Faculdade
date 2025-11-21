@@ -44,18 +44,21 @@ class Pedido:
             total += item['preco'] * item['quantidade']
         return total
     
-    def salvar_no_banco(self):
+class PedidoRepository:    
+    def salvar_no_banco(self, pedido):
         """Salva o pedido no banco de dados"""
         # Simulação de salvamento
-        print(f"Salvando pedido {self.numero} no banco de dados...")
+        print(f"Salvando pedido {pedido} no banco de dados...")
         # Código de conexão com banco seria aqui
-        
+
+class EmailService:
     def enviar_email_confirmacao(self):
         """Envia email de confirmação para o cliente"""
         total = self.calcular_total()
         print(f"Enviando email para {self.cliente} confirmando pedido {self.numero} no valor de R$ {total:.2f}")
         # Código de envio de email seria aqui
-    
+
+class RelatorioService:
     def gerar_relatorio(self):
         """Gera relatório do pedido"""
         print(f"Gerando relatório do pedido {self.numero}...")
@@ -93,15 +96,15 @@ class Pedido:
 #
 # 
 # Exemplo de uso esperado:
-# pedido = Pedido(1, "joao@email.com", [{"preco": 10.0, "quantidade": 2}])
-# total = pedido.calcular_total()
+pedido = Pedido(1, "joao@email.com", [{"preco": 10.0, "quantidade": 2}])
+total = pedido.calcular_total()
 # 
-# repository = PedidoRepository()
-# repository.salvar(pedido)
+repository = PedidoRepository()
+repository.salvar(pedido)
 # 
-# email_service = EmailService()
-# email_service.enviar_confirmacao(pedido)
+email_service = EmailService()
+email_service.enviar_confirmacao(pedido)
 # 
-# relatorio_service = RelatorioService()
-# relatorio_service.gerar(pedido)
+relatorio_service = RelatorioService()
+relatorio_service.gerar(pedido)
 
