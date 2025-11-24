@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulado Prova P2 - Laboratório de Programação Front End</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1> Simulado Prova P2 </h1>
+        <p class="subtitle">Laboratório de Programação Front End - Engenharia de Software</p>
+        <p class="subtitle" style="font-weight: bold; color: #667eea;">Total: 8 pontos</p>
+
+        <!-- EXERCÍCIO 1: Adicionar elemento via input -->
+        <div class="exercise">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercício 1: Adicionar Elemento via Input</div>
+                <div class="exercise-points">1 ponto</div>
+            </div>
+            <div class="exercise-description">
+                <strong>Objetivo:</strong> Crie uma função que adicione um novo item à lista quando o botão for clicado.
+                O texto do item deve vir do input. Após adicionar, limpe o campo de input.
+            </div>
+            <div class="exercise-area">
+                <input type="text" id="textoItem" placeholder="Digite um item...">
+                <button id="adicionarItem">Adicionar Item</button>
+                <ul id="listaItens" class="item-list"></ul>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIO 2: Manipular CSS pelo DOM -->
+        <div class="exercise">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercício 2: Manipular CSS pelo DOM</div>
+                <div class="exercise-points">1 ponto</div>
+            </div>
+            <div class="exercise-description">
+                <strong>Objetivo:</strong> Quando o botão for clicado, altere a cor de fundo do quadrado para
+                "lightblue",
+                a largura para "200px" e a altura para "200px". Também adicione um border-radius de "10px".
+            </div>
+            <div class="exercise-area">
+                <button id="mudarEstilo">Mudar Estilo do Quadrado</button>
+                <div id="quadrado"
+                    style="width: 100px; height: 100px; background-color: #ff6b6b; margin-top: 15px; transition: all 0.3s;">
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIO 3: Event Listeners de Teclado -->
+        <div class="exercise">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercício 3: Event Listeners de Teclado</div>
+                <div class="exercise-points">2 pontos</div>
+            </div>
+            <div class="exercise-description">
+                <strong>Objetivo:</strong> Crie três funções separadas e adicione event listeners para keydown, keypress
+                e keyup.
+                Cada função deve atualizar o conteúdo do respectivo elemento de resultado quando a tecla for
+                pressionada.
+            </div>
+            <div class="exercise-area">
+                <p><strong>Pressione qualquer tecla para testar:</strong></p>
+                <div class="result-area">
+                    <p>Keydown: <span id="resultadoKeydown"
+                            style="color: #667eea; font-weight: bold;">Aguardando...</span></p>
+                    <p>Keypress: <span id="resultadoKeypress"
+                            style="color: #667eea; font-weight: bold;">Aguardando...</span></p>
+                    <p>Keyup: <span id="resultadoKeyup" style="color: #667eea; font-weight: bold;">Aguardando...</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIO 4: Detalhes da Tecla Pressionada -->
+        <div class="exercise">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercício 4: Detalhes da Tecla Pressionada</div>
+                <div class="exercise-points">2 pontos</div>
+            </div>
+            <div class="exercise-description">
+                <strong>Objetivo:</strong> Crie uma função que capture o evento keyup e exiba:
+                - O código da tecla (event.code)
+                - A tecla pressionada (event.key)
+                - Se o Shift foi pressionado (event.shiftKey) - exiba "Sim" ou "Não"
+                - Se o Control foi pressionado (event.ctrlKey) - exiba "Sim" ou "Não"
+            </div>
+            <div class="exercise-area">
+                <p><strong>Pressione qualquer tecla para ver os detalhes:</strong></p>
+                <div class="result-area">
+                    <div id="detalhesTecla" style="font-family: monospace; color: #333;">Aguardando tecla...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXERCÍCIO 5: Classes - Construtor e Métodos -->
+        <div class="exercise">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercício 5: Classes - Construtor e Métodos</div>
+                <div class="exercise-points">2 pontos</div>
+            </div>
+            <div class="exercise-description">
+                <strong>Objetivo:</strong> Crie uma classe "Pessoa" com um construtor que recebe nome e idade.
+                Adicione um método "apresentar" que retorna uma string no formato: "Olá, meu nome é [nome] e tenho
+                [idade] anos."
+                Na função testarPessoa(), crie uma instância com nome "João" e idade 25, e exiba o resultado.
+            </div>
+            <div class="exercise-area">
+                <button onclick="testarPessoa()">Testar Classe Pessoa</button>
+                <div class="result-area">
+                    <div id="resultadoPessoa" style="color: #333; font-weight: bold;">Clique no botão para testar</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
